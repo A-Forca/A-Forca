@@ -1,5 +1,7 @@
 ### Hi there 👋
 
+Hello my name is Anthony and I am an aspiring software engineer. 
+
 <!--
 **A-Forca/A-Forca** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
