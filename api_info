@@ -1,0 +1,101 @@
+//**GET REQUESTS**\\
+
+import requests
+
+base_url = "http://demo.codingnomads.co:8080/tasks_api/users" 
+response = requests.get(base_url) //uses requests module, with the .get function with base_url as the parameter. this will pull info from the url 
+print(response.status_code) prints the response variable status code -- should be 200 here
+
+#is the same as 
+
+params = {
+    "email": "ryan@codingnomads.co"
+}
+
+response = requests.get("http://demo.codingnomads.co:8080/tasks_api/users", params=params) can use params=params here to use the email as a parameter
+print(response.status_code)
+
+
+-----
+import requests
+from pprint import pprint --uses pretty print so we can view the json in a more readable format (dict)
+
+base_url = "http://demo.codingnomads.co:8080/tasks_api/users"
+response = requests.get(base_url)
+
+data = response.json() --changes the data we get back from response into json
+pprint(data) -- pretty prints the json 
+
+
+
+
+
+
+//**POST REQUESTS**\\
+
+To pass information in a POST request, we can use the json parameter. Using the same API as before, we are now going to create a new user by sending the user information in the body of the POST request. For example:
+
+import requests
+
+base_url = "http://demo.codingnomads.co:8080/tasks_api/users"
+
+body = {
+    "first_name": "[YOUR FIRST NAME FIELD]",#add first name inside quotes
+    "last_name": "[YOUR LAST NAME FIELD]",#add last name inside quotes
+    "email": "[YOUR EMAIL FIELD]"#add email inside quotes
+} -- This is the body format we will be sending 
+
+response = requests.post(base_url, json=body) <-- parameters are the url and the body, must use json=body syntax 
+
+# print the status code (hopefully it's 200 which means all is well)
+print(f"Response Code: {response.status_code}")
+
+# let's make a GET request to retrieve the new data from the server
+response = requests.get(base_url)
+# print the data - see your new record?
+print(f"Response Content: {response.content}")
+
+
+
+
+
+//**PUT REQUESTS**\\
+
+Making a PUT request is very similar to a POST request. PUT requests are also used to send information to the server. As you might have guessed, you will instead be using the put() method. 
+
+For this particular API, you also need to specify a user id as a path variable in order to update the user record.
+
+Replace YOUR_ID on line 12 with your user id.
+---
+import requests
+
+base_url = "http://demo.codingnomads.co:8080/tasks_api/users"
+
+body = {
+    "first_name": "[YOUR UPDATED FIELD]",
+    "last_name": "[YOUR UPDATED FIELD]",
+    "email": "[YOUR EMAIL]"
+}
+
+# here we execute the PUT request
+response = requests.put(base_url + "/YOUR_ID", json=body)
+# print the status code (hopefully it's 200 which means all is well)
+print(f"Response Code: {response.status_code}")
+
+# let's make a GET request to retrieve the new data from the server
+response = requests.get(base_url)
+# print the data - see your updated record?
+print(f"Response Content: {response.content}")
+
+
+//**DELETE REQUESTS**\\
+
+The DELETE request is also capable of sending information to the server like a POST or PUT request. To make a DELETE request to the API you have been working on, you do not need to send any information in the body of the request.
+
+As with PUT, you can specify the user you want to delete by utilizing path variables. For example, to delete the user with id 50 you will add the id to the URL as a path variable:
+
+import requests
+
+base_url = "http://demo.codingnomads.co:8080/tasks_api/users"
+response = requests.delete(base_url + "/50")
+print(response.status_code)
