@@ -1,7 +1,6 @@
 ### Hi there 👋
 
-Hello my name is Anthony and I am an aspiring software engineer. 
-
+Looking to build the next gen of apps to help small-medium businesses
 <!--
 **A-Forca/A-Forca** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
